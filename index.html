@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portofolio Andreas Joan Ramiel - Network Engineering, Cyber Security, & Web Development">
+    <title>Andreas Joan Ramiel | Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Canvas for Interactive Particles -->
+    <canvas id="cyberCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">AJR<span class="accent">.sys</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content fade-in-up">
+                <p class="greeting">HELLO, WORLD! I AM</p>
+                <h1 class="glitch" data-text="Andreas Joan Ramiel">Andreas Joan Ramiel</h1>
+                <h2 class="role">Network Engineer & <span class="accent">Cyber Security</span> Enthusiast</h2>
+                <p class="school">SMKN 2 Pengasih</p>
+                <div class="cta-group">
+                    <a href="#experience" class="btn primary-btn">View My Work</a>
+                    <a href="https://www.instagram.com/andrsjoanr?igsh=MTc5OXVub3VpazNmNQ==&igsi=MTc5OXVub3VpazNmNQ==" target="_blank" class="btn social-btn"><i class="fab fa-instagram"></i> Connect</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about section-padding reveal">
+            <div class="container">
+                <h2 class="section-title">About <span class="accent">Me</span></h2>
+                <div class="about-grid">
+                    <div class="about-text glass-card">
+                        <p>Saya adalah seorang siswa bersemangat dari <strong>SMKN 2 Pengasih</strong> dengan ketertarikan mendalam pada dunia teknologi, khususnya di bidang infrastruktur jaringan dan keamanan siber.</p>
+                        <p>Saat ini, saya sedang mempersiapkan diri untuk mengikuti ajang bergengsi <strong>LKS Cyber Security</strong>, di mana saya akan menguji batas kemampuan saya dalam meretas, menganalisis, dan mengamankan sistem.</p>
+                        <p>Dengan latar belakang yang kuat dalam *networking* serta kemampuan *coding* dan desain grafis, saya selalu siap menghadapi tantangan teknologi masa depan.</p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-box glass-card glow-hover">
+                            <i class="fas fa-network-wired"></i>
+                            <h3>Networking</h3>
+                            <p>Routing, Switching & Infrastruktur</p>
+                        </div>
+                        <div class="stat-box glass-card glow-hover">
+                            <i class="fas fa-shield-halved"></i>
+                            <h3>Security</h3>
+                            <p>LKS Cyber Security Contender</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="experience section-padding reveal">
+            <div class="container">
+                <h2 class="section-title">My <span class="accent">Experience</span></h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <h3>Network Engineering</h3>
+                            <h4>UNY Wates</h4>
+                            <p class="timeline-desc">Bertanggung jawab dalam instalasi, konfigurasi, dan pemeliharaan infrastruktur jaringan untuk memastikan konektivitas yang stabil dan aman bagi seluruh pengguna di lingkungan kampus.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <h3>IT Support</h3>
+                            <h4>UNY Wates</h4>
+                            <p class="timeline-desc">Memberikan dukungan teknis *troubleshooting* perangkat keras dan lunak, serta mengelola sistem IT dasar untuk kelancaran operasional sehari-hari.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card highlight-card">
+                            <h3>LKS Cyber Security</h3>
+                            <h4>Upcoming Event</h4>
+                            <p class="timeline-desc">Kandidat kompetisi LKS (Lomba Kompetensi Siswa) bidang Cyber Security, mengasah keahlian dalam penetrasi jaringan, forensik digital, dan keamanan sistem.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills section-padding reveal">
+            <div class="container">
+                <h2 class="section-title">Technical <span class="accent">Skills</span></h2>
+                <div class="skills-grid">
+                    <div class="skill-category glass-card">
+                        <h3><i class="fas fa-server"></i> Network & Cyber</h3>
+                        <ul class="skill-list">
+                            <li><span class="skill-name">Network Engineering</span><div class="progress-bar"><div class="progress" style="width: 90%;"></div></div></li>
+                            <li><span class="skill-name">Cyber Security</span><div class="progress-bar"><div class="progress" style="width: 85%;"></div></div></li>
+                            <li><span class="skill-name">System Administration</span><div class="progress-bar"><div class="progress" style="width: 80%;"></div></div></li>
+                        </ul>
+                    </div>
+                    <div class="skill-category glass-card">
+                        <h3><i class="fas fa-code"></i> Development</h3>
+                        <ul class="skill-list">
+                            <li><span class="skill-name">Web Coding (HTML, CSS, JS)</span><div class="progress-bar"><div class="progress" style="width: 85%;"></div></div></li>
+                            <li><span class="skill-name">App Coding</span><div class="progress-bar"><div class="progress" style="width: 75%;"></div></div></li>
+                            <li><span class="skill-name">Database Management</span><div class="progress-bar"><div class="progress" style="width: 70%;"></div></div></li>
+                        </ul>
+                    </div>
+                    <div class="skill-category glass-card">
+                        <h3><i class="fas fa-pen-nib"></i> Creative</h3>
+                        <ul class="skill-list">
+                            <li><span class="skill-name">Graphic Design</span><div class="progress-bar"><div class="progress" style="width: 85%;"></div></div></li>
+                            <li><span class="skill-name">UI/UX Concepts</span><div class="progress-bar"><div class="progress" style="width: 75%;"></div></div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 Andreas Joan Ramiel. All Rights Reserved.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/andrsjoanr?igsh=MTc5OXVub3VpazNmNQ==&igsi=MTc5OXVub3VpazNmNQ==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
