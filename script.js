@@ -1,9 +1,70 @@
+// ===== CUSTOM CURSOR =====
+const cursorDot = document.querySelector('.cursor-dot');
+const cursorOutline = document.querySelector('.cursor-outline');
+
+window.addEventListener('mousemove', (e) => {
+    const posX = e.clientX;
+    const posY = e.clientY;
+    
+    // Dot follows exactly
+    cursorDot.style.left = `${posX}px`;
+    cursorDot.style.top = `${posY}px`;
+    
+    // Outline follows with a slight delay using animate
+    cursorOutline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+    }, { duration: 500, fill: "forwards" });
+});
+
+// Interactive elements hover effect for cursor
+const interactiveElements = document.querySelectorAll('a, button, .tilt-element, .theme-switch');
+interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        cursorOutline.style.backgroundColor = 'rgba(0, 240, 255, 0.1)';
+    });
+    el.addEventListener('mouseleave', () => {
+        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursorOutline.style.backgroundColor = 'transparent';
+    });
+});
+
+
+// ===== THEME SWITCHER =====
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+const currentTheme = localStorage.getItem('theme');
+
+// Set Initial Theme
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    if (currentTheme === 'light') {
+        toggleSwitch.checked = true;
+    }
+} else {
+    document.documentElement.setAttribute('data-theme', 'dark'); // Default to dark
+}
+
+// Switch Theme Function
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    }    
+}
+toggleSwitch.addEventListener('change', switchTheme);
+
+
 // ===== NAVIGATION SCRIPTS =====
 const navbar = document.getElementById('navbar');
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
+const navItems = document.querySelectorAll('.nav-link');
 
-// Change navbar background on scroll
+// Scroll effect for navbar
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
@@ -25,18 +86,56 @@ hamburger.addEventListener('click', () => {
     }
 });
 
-// Close mobile menu on link click
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
+// Close mobile menu when clicking a link
+navItems.forEach(item => {
+    item.addEventListener('click', () => {
         navLinks.classList.remove('active');
-        hamburger.querySelector('i').classList.remove('fa-times');
-        hamburger.querySelector('i').classList.add('fa-bars');
+        const icon = hamburger.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
     });
 });
 
-// ===== SCROLL ANIMATIONS (INTERSECTION OBSERVER) =====
+
+// ===== TYPING EFFECT =====
+const typedTextSpan = document.querySelector(".typed-text");
+const textArray = ["Cyber Security Enthusiast.", "Network Engineer.", "Tech Explorer.", "Problem Solver."];
+const typingDelay = 100;
+const erasingDelay = 50;
+const newTextDelay = 2000; // Delay between current and next text
+let textArrayIndex = 0;
+let charIndex = 0;
+
+function type() {
+    if (charIndex < textArray[textArrayIndex].length) {
+        typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, typingDelay);
+    } else {
+        setTimeout(erase, newTextDelay);
+    }
+}
+
+function erase() {
+    if (charIndex > 0) {
+        typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(erase, erasingDelay);
+    } else {
+        textArrayIndex++;
+        if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+        setTimeout(type, typingDelay + 1100);
+    }
+}
+
+// Start typing effect
+document.addEventListener("DOMContentLoaded", () => {
+    if(textArray.length) setTimeout(type, newTextDelay + 250);
+});
+
+
+// ===== SCROLL REVEAL & PROGRESS BAR ANIMATIONS =====
 const revealElements = document.querySelectorAll('.reveal');
-const skillsSection = document.getElementById('skills');
 
 const revealOptions = {
     threshold: 0.15,
@@ -47,15 +146,23 @@ const revealOnScroll = new IntersectionObserver(function(entries, observer) {
     entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         
-        entry.target.classList.add('active');
+        // Handle delay if specified via data attribute
+        const delay = entry.target.getAttribute('data-delay') || 0;
         
-        // Special case for skills progress bars
-        if (entry.target.id === 'skills') {
-            // Give a slight delay before triggering the bars
-            setTimeout(() => {
-                entry.target.classList.add('active'); // trigger css scaleX
-            }, 300);
-        }
+        setTimeout(() => {
+            entry.target.classList.add('active');
+            
+            // Check for progress bars to animate
+            const barsInElement = entry.target.querySelectorAll('.progress');
+            barsInElement.forEach(bar => {
+                const targetWidth = bar.getAttribute('data-width');
+                // Small delay to ensure smooth transition after card appears
+                setTimeout(() => {
+                    bar.style.width = targetWidth;
+                }, 400);
+            });
+            
+        }, delay);
         
         observer.unobserve(entry.target);
     });
@@ -66,150 +173,27 @@ revealElements.forEach(el => {
 });
 
 
-// ===== INTERACTIVE CANVAS BACKGROUND (PARTICLES / NETWORK) =====
-const canvas = document.getElementById('cyberCanvas');
-const ctx = canvas.getContext('2d');
+// ===== 3D TILT EFFECT FOR CARDS =====
+const tiltElements = document.querySelectorAll('.tilt-element');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particlesArray;
-
-// Handle mouse interaction
-let mouse = {
-    x: null,
-    y: null,
-    radius: (canvas.height/80) * (canvas.width/80)
-};
-
-window.addEventListener('mousemove', function(event){
-    mouse.x = event.x;
-    mouse.y = event.y;
+tiltElements.forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left; // x position within the element
+        const y = e.clientY - rect.top;  // y position within the element
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -10; // Max rotation 10deg
+        const rotateY = ((x - centerX) / centerX) * 10;
+        
+        el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        el.style.transition = 'none'; // Remove transition for smooth tracking
+    });
+    
+    el.addEventListener('mouseleave', () => {
+        el.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+        el.style.transition = 'transform 0.5s ease'; // Add transition back for smooth return
+    });
 });
-
-window.addEventListener('mouseout', function(){
-    mouse.x = undefined;
-    mouse.y = undefined;
-});
-
-// Create Particle
-class Particle {
-    constructor(x, y, directionX, directionY, size, color) {
-        this.x = x;
-        this.y = y;
-        this.directionX = directionX;
-        this.directionY = directionY;
-        this.size = size;
-        this.color = color;
-    }
-    
-    // Draw dot
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-    }
-    
-    // Check particle position, move, draw, connect
-    update() {
-        // Bounce off edges
-        if (this.x > canvas.width || this.x < 0) {
-            this.directionX = -this.directionX;
-        }
-        if (this.y > canvas.height || this.y < 0) {
-            this.directionY = -this.directionY;
-        }
-        
-        // Collision detection - mouse position / particle interaction
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx*dx + dy*dy);
-        
-        if (distance < mouse.radius + this.size) {
-            if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-                this.x += 2;
-                this.directionX = -this.directionX;
-            }
-            if (mouse.x > this.x && this.x > this.size * 10) {
-                this.x -= 2;
-                this.directionX = -this.directionX;
-            }
-            if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-                this.y += 2;
-                this.directionY = -this.directionY;
-            }
-            if (mouse.y > this.y && this.y > this.size * 10) {
-                this.y -= 2;
-                this.directionY = -this.directionY;
-            }
-        }
-        
-        // Move particle
-        this.x += this.directionX;
-        this.y += this.directionY;
-        
-        this.draw();
-    }
-}
-
-// Setup particles
-function init() {
-    particlesArray = [];
-    let numberOfParticles = (canvas.height * canvas.width) / 12000;
-    
-    for (let i = 0; i < numberOfParticles; i++) {
-        let size = (Math.random() * 2) + 0.5;
-        let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-        let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-        let directionX = (Math.random() * 1) - 0.5;
-        let directionY = (Math.random() * 1) - 0.5;
-        let color = 'rgba(0, 255, 204, 0.6)'; // Accent color with opacity
-        
-        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
-    }
-}
-
-// Connect particles with lines
-function connect() {
-    let opacityValue = 1;
-    for (let a = 0; a < particlesArray.length; a++) {
-        for (let b = a; b < particlesArray.length; b++) {
-            let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) + 
-                           ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-                           
-            if (distance < (canvas.width/10) * (canvas.height/10)) {
-                opacityValue = 1 - (distance/20000);
-                ctx.strokeStyle = `rgba(0, 255, 204, ${opacityValue * 0.2})`;
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                ctx.stroke();
-            }
-        }
-    }
-}
-
-// Animation loop
-function animate() {
-    requestAnimationFrame(animate);
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
-    
-    for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-    }
-    connect();
-}
-
-// Resize event
-window.addEventListener('resize', function(){
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
-    mouse.radius = ((innerHeight/80) * (innerWidth/80));
-    init();
-});
-
-// Initialize canvas animation
-init();
-animate();
