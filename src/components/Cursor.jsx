@@ -13,15 +13,15 @@ const Cursor = () => {
     window.addEventListener('mousemove', updateMousePosition);
 
     const handleMouseOver = (e) => {
-      if (e.target.tagName.toLowerCase() === 'a' || 
-          e.target.tagName.toLowerCase() === 'button' ||
-          e.target.closest('a') ||
-          e.target.closest('button') ||
-          e.target.classList.contains('glass-card')) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
+      const isClickable = 
+        e.target.tagName?.toLowerCase() === 'a' || 
+        e.target.tagName?.toLowerCase() === 'button' ||
+        e.target.closest('a') ||
+        e.target.closest('button') ||
+        e.target.classList?.contains('glass-card') ||
+        e.target.classList?.contains('bento-item');
+      
+      setIsHovering(!!isClickable);
     };
 
     window.addEventListener('mouseover', handleMouseOver);
@@ -34,46 +34,47 @@ const Cursor = () => {
 
   return (
     <>
-      {/* Dot */}
       <motion.div
-        className="cursor-dot"
-        animate={{ x: mousePosition.x, y: mousePosition.y }}
+        className="cursor-inner"
+        animate={{ 
+          x: mousePosition.x - 4, 
+          y: mousePosition.y - 4,
+          opacity: isHovering ? 0 : 1,
+          rotate: 45 // Rotate to make it a diamond
+        }}
         transition={{ type: 'tween', ease: 'backOut', duration: 0 }}
         style={{
-          width: '6px',
-          height: '6px',
+          width: '8px',
+          height: '8px',
           backgroundColor: 'var(--accent-color)',
           position: 'fixed',
           top: 0,
           left: 0,
-          borderRadius: '50%',
           pointerEvents: 'none',
           zIndex: 9999,
-          transform: 'translate(-50%, -50%)',
-          boxShadow: '0 0 10px var(--accent-color)',
+          boxShadow: '0 0 10px var(--accent-color)'
         }}
       />
-      {/* Outline */}
       <motion.div
-        className="cursor-outline"
-        animate={{
-          x: mousePosition.x,
-          y: mousePosition.y,
+        className="cursor-outer"
+        animate={{ 
+          x: mousePosition.x - 16, 
+          y: mousePosition.y - 16,
           scale: isHovering ? 1.5 : 1,
-          backgroundColor: isHovering ? 'rgba(0, 240, 255, 0.1)' : 'transparent',
+          rotate: isHovering ? 135 : 45, // Spins when hovering
+          backgroundColor: isHovering ? 'color-mix(in srgb, var(--accent-color) 20%, transparent)' : 'transparent',
+          borderColor: isHovering ? 'transparent' : 'var(--text-secondary)'
         }}
-        transition={{ type: 'spring', stiffness: 300, damping: 28, mass: 0.5 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 25, mass: 0.5 }}
         style={{
-          width: '40px',
-          height: '40px',
-          border: '1px solid var(--accent-color)',
+          width: '32px',
+          height: '32px',
+          border: '1px solid',
           position: 'fixed',
           top: 0,
           left: 0,
-          borderRadius: '50%',
           pointerEvents: 'none',
           zIndex: 9998,
-          transform: 'translate(-50%, -50%)',
         }}
       />
     </>

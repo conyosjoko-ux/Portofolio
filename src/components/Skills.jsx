@@ -21,8 +21,8 @@ const Skills = () => {
           transition={{ duration: 0.6 }}
           className="section-header center"
         >
-          <span className="section-subtitle">03. EXPERTISE</span>
-          <h2 className="section-title">Technical <span className="gradient-text">Modules</span></h2>
+          <span className="section-subtitle">EXPERTISE</span>
+          <h2 className="section-title">Technical Modules</h2>
         </motion.div>
 
         <div className="bento-grid">

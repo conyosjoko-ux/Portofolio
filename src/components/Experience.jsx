@@ -39,8 +39,8 @@ const Experience = () => {
           transition={{ duration: 0.6 }}
           className="section-header center"
         >
-          <span className="section-subtitle">02. PROFESSIONAL JOURNEY</span>
-          <h2 className="section-title">Execution <span className="gradient-text">Logs</span></h2>
+          <span className="section-subtitle">PROFESSIONAL JOURNEY</span>
+          <h2 className="section-title">Execution Logs</h2>
         </motion.div>
 
         <div className="bento-grid">
@@ -57,10 +57,10 @@ const Experience = () => {
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
                 <span className="font-mono" style={{
-                  display: 'inline-block', padding: '6px 12px', background: 'rgba(0, 240, 255, 0.05)',
+                  display: 'inline-block', padding: '6px 12px', background: 'color-mix(in srgb, var(--accent-color) 10%, transparent)',
                   color: 'var(--accent-color)', borderRadius: '6px', fontSize: '0.85rem', fontWeight: 600,
-                  border: '1px solid rgba(0, 240, 255, 0.2)'
-                }}>> {exp.date}</span>
+                  border: '1px solid color-mix(in srgb, var(--accent-color) 20%, transparent)'
+                }}> {exp.date}</span>
                 
                 <span style={{ color: 'var(--text-secondary)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <i className="fas fa-building"></i> {exp.org}

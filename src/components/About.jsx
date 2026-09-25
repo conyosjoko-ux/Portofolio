@@ -12,8 +12,8 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="section-header center"
         >
-          <span className="section-subtitle">01. INTRODUCTION</span>
-          <h2 className="section-title">System <span className="gradient-text">Overview</span></h2>
+          <span className="section-subtitle">INTRODUCTION</span>
+          <h2 className="section-title">System Overview</h2>
         </motion.div>
 
         <div className="bento-grid">
@@ -54,8 +54,8 @@ const About = () => {
           >
             <div style={{
               width: '48px', height: '48px',
-              background: 'rgba(0, 240, 255, 0.1)',
-              border: '1px solid var(--accent-color)',
+              background: 'rgba(59, 130, 246, 0.1)',
+              border: '1px solid rgba(59, 130, 246, 0.3)',
               borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center',
               marginBottom: '20px', color: 'var(--accent-color)', fontSize: '1.2rem',
             }}>
@@ -77,10 +77,10 @@ const About = () => {
           >
             <div style={{
               width: '48px', height: '48px',
-              background: 'rgba(57, 255, 20, 0.1)',
-              border: '1px solid var(--accent-light)',
+              background: 'rgba(139, 92, 246, 0.1)',
+              border: '1px solid rgba(139, 92, 246, 0.3)',
               borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-              marginBottom: '20px', color: 'var(--accent-light)', fontSize: '1.2rem',
+              marginBottom: '20px', color: '#8b5cf6', fontSize: '1.2rem',
             }}>
               <i className="fas fa-shield-halved"></i>
             </div>

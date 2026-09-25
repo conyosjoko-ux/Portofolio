@@ -14,7 +14,7 @@ const Hero = () => {
       paddingTop: '80px',
       paddingBottom: '120px'
     }}>
-      <div style={{ maxWidth: '900px', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <div style={{ maxWidth: '900px', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '80px' }}>
         
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -22,18 +22,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           style={{ marginBottom: '32px' }}
         >
-          <span style={{
-            padding: '8px 16px',
-            background: 'var(--bg-glass)',
-            border: '1px solid var(--border-glass)',
-            borderRadius: '50px',
-            fontSize: '0.9rem',
-            fontWeight: 500,
-            color: 'var(--text-secondary)',
-            letterSpacing: '1px',
-            textTransform: 'uppercase',
-            backdropFilter: 'blur(10px)'
-          }}>Welcome to my universe</span>
+          <span className="section-subtitle">Professional Portfolio</span>
         </motion.div>
 
         <motion.h1 
@@ -42,7 +31,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="title"
         >
-          Andreas Joan <br /> <span className="gradient-text">Ramiel</span>
+          Andreas Joan Ramiel
         </motion.h1>
 
         <motion.div 
@@ -97,7 +86,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 1 }}
           style={{ display: 'flex', gap: '24px', justifyContent: 'center' }}
         >
-          <a href="#experience" className="btn btn-primary">
+          <a href="#projects" className="btn btn-primary">
             <span>Discover My Work</span>
             <i className="fas fa-arrow-right"></i>
           </a>
@@ -108,46 +97,6 @@ const Hero = () => {
         </motion.div>
       </div>
       
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        style={{
-          position: 'absolute',
-          bottom: '40px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '12px',
-          color: 'var(--text-secondary)',
-          fontSize: '0.9rem',
-          fontWeight: 500,
-          letterSpacing: '1px',
-          textTransform: 'uppercase'
-        }}
-      >
-        <div style={{
-          width: '24px', height: '36px',
-          border: '2px solid var(--text-secondary)',
-          borderRadius: '12px', position: 'relative'
-        }}>
-          <motion.div 
-            animate={{ y: [0, 15, 0], opacity: [1, 0, 1] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            style={{
-              position: 'absolute',
-              top: '6px', left: '50%',
-              transform: 'translateX(-50%)',
-              width: '4px', height: '4px',
-              background: 'var(--accent-color)',
-              borderRadius: '50%'
-            }}
-          />
-        </div>
-        <span>Scroll Down</span>
-      </motion.div>
     </section>
   );
 };

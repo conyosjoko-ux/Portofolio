@@ -18,7 +18,7 @@ const Footer = () => {
           </div>
           
           <div style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>
-            &copy; 2026 Andreas Joan Ramiel. <span className="gradient-text">Crafted with elegance.</span>
+            &copy; 2026 Andreas Joan Ramiel. Crafted with elegance.
           </div>
           
           <div>
