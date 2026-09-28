@@ -39,8 +39,9 @@ const Navbar = ({ theme, toggleTheme }) => {
       }}
     >
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-1px' }}>
-          AJR<span style={{ color: 'var(--accent-color)' }}>.</span>
+        <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{ width: '24px', height: '24px', background: 'var(--text-primary)', borderRadius: '6px', display: 'inline-block' }}></div>
+          AJR<span style={{ color: 'var(--text-tertiary)' }}>.</span>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
@@ -72,35 +73,20 @@ const Navbar = ({ theme, toggleTheme }) => {
           </ul>
 
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <label style={{ display: 'inline-block', height: '30px', position: 'relative', width: '56px', cursor: 'pointer' }}>
-              <input type="checkbox" checked={theme === 'light'} onChange={toggleTheme} style={{ display: 'none' }} />
-              <div style={{
-                backgroundColor: 'var(--bg-secondary)',
-                border: '1px solid var(--border-glass)',
-                position: 'absolute',
-                top: 0, left: 0, right: 0, bottom: 0,
-                borderRadius: '34px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '0 8px',
-                transition: '0.4s'
-              }}>
-                <i className="fas fa-sun" style={{ color: '#f39c12', fontSize: '11px', zIndex: 1 }}></i>
-                <i className="fas fa-moon" style={{ color: '#f1c40f', fontSize: '11px', zIndex: 1 }}></i>
-                <div style={{
-                  backgroundColor: 'var(--text-primary)',
-                  position: 'absolute',
-                  height: '22px', width: '22px',
-                  left: theme === 'light' ? '28px' : '4px',
-                  bottom: '3px',
-                  borderRadius: '50%',
-                  transition: '0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-                  zIndex: 2,
-                  boxShadow: '0 2px 5px rgba(0,0,0,0.2)'
-                }} />
-              </div>
-            </label>
+            <button 
+              onClick={toggleTheme} 
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                width: '40px', height: '40px', borderRadius: '10px',
+                background: 'var(--bg-tertiary)', border: '1px solid var(--border-glass)',
+                color: 'var(--text-primary)', cursor: 'pointer', transition: 'all 0.3s ease'
+              }}
+              onMouseOver={(e) => { e.currentTarget.style.background = 'var(--border-glass)'; }}
+              onMouseOut={(e) => { e.currentTarget.style.background = 'var(--bg-tertiary)'; }}
+              aria-label="Toggle Theme"
+            >
+              <i className={theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'} style={{ fontSize: '1rem' }}></i>
+            </button>
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ const BackgroundOrbs = () => {
           scale: [1, 1.2, 1],
         }}
         transition={{
-          duration: 20,
+          duration: 30,
           repeat: Infinity,
           ease: "easeInOut"
         }}
@@ -32,8 +32,8 @@ const BackgroundOrbs = () => {
           top: '-20vh',
           left: '-10vw',
           borderRadius: '50%',
-          filter: 'blur(100px)',
-          opacity: 0.15,
+          filter: 'blur(120px)',
+          opacity: 0.08,
         }}
       />
       
@@ -44,7 +44,7 @@ const BackgroundOrbs = () => {
           scale: [1, 1.3, 1],
         }}
         transition={{
-          duration: 18,
+          duration: 25,
           repeat: Infinity,
           ease: "easeInOut",
           delay: 2
@@ -57,8 +57,8 @@ const BackgroundOrbs = () => {
           bottom: '-10vh',
           right: '-10vw',
           borderRadius: '50%',
-          filter: 'blur(100px)',
-          opacity: 0.15,
+          filter: 'blur(120px)',
+          opacity: 0.08,
         }}
       />
 
@@ -69,7 +69,7 @@ const BackgroundOrbs = () => {
           scale: [1, 1.1, 1],
         }}
         transition={{
-          duration: 25,
+          duration: 35,
           repeat: Infinity,
           ease: "easeInOut",
           delay: 5
@@ -78,12 +78,12 @@ const BackgroundOrbs = () => {
           position: 'absolute',
           width: '30vw',
           height: '30vw',
-          background: '#ff0055',
+          background: 'var(--accent-glow)',
           top: '30vh',
           left: '30vw',
           borderRadius: '50%',
-          filter: 'blur(100px)',
-          opacity: 0.08,
+          filter: 'blur(120px)',
+          opacity: 0.05,
         }}
       />
     </div>
