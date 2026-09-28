@@ -40,7 +40,18 @@ const Navbar = ({ theme, toggleTheme }) => {
     >
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <div style={{ width: '24px', height: '24px', background: 'var(--text-primary)', borderRadius: '6px', display: 'inline-block' }}></div>
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ filter: 'drop-shadow(0px 2px 4px rgba(0,0,0,0.1))' }}>
+            <rect width="32" height="32" rx="8" fill="url(#logo_grad)" />
+            <path d="M16 8L9 22H12.5L16 15L19.5 22H23L16 8Z" fill="white" />
+            <circle cx="16" cy="18.5" r="1.5" fill="white" />
+            <defs>
+              <linearGradient id="logo_grad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#4F46E5" />
+                <stop offset="0.5" stopColor="#9333EA" />
+                <stop offset="1" stopColor="#EC4899" />
+              </linearGradient>
+            </defs>
+          </svg>
           AJR<span style={{ color: 'var(--text-tertiary)' }}>.</span>
         </div>
 
